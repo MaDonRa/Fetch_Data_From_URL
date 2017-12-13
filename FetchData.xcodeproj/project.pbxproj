@@ -12,6 +12,11 @@
 		F54B7E0E1FD146E000ADDEA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F54B7E0C1FD146E000ADDEA1 /* Main.storyboard */; };
 		F54B7E101FD146E000ADDEA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F54B7E0F1FD146E000ADDEA1 /* Assets.xcassets */; };
 		F54B7E131FD146E000ADDEA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F54B7E111FD146E000ADDEA1 /* LaunchScreen.storyboard */; };
+		F54B7E1D1FD1471300ADDEA1 /* ManageRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B7E1C1FD1471300ADDEA1 /* ManageRequestData.swift */; };
+		F54B7E201FD1486500ADDEA1 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B7E1F1FD1486500ADDEA1 /* Reachability.swift */; };
+		F54B7E221FD1488E00ADDEA1 /* VideoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B7E211FD1488E00ADDEA1 /* VideoEntity.swift */; };
+		F54B7E261FD1519900ADDEA1 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B7E251FD1519900ADDEA1 /* UserEntity.swift */; };
+		F54B7E401FD1715300ADDEA1 /* Model_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B7E3F1FD1715300ADDEA1 /* Model_API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		F54B7E0F1FD146E000ADDEA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F54B7E121FD146E000ADDEA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F54B7E141FD146E000ADDEA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F54B7E1C1FD1471300ADDEA1 /* ManageRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageRequestData.swift; sourceTree = "<group>"; };
+		F54B7E1F1FD1486500ADDEA1 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		F54B7E211FD1488E00ADDEA1 /* VideoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEntity.swift; sourceTree = "<group>"; };
+		F54B7E251FD1519900ADDEA1 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		F54B7E3F1FD1715300ADDEA1 /* Model_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model_API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +65,66 @@
 			isa = PBXGroup;
 			children = (
 				F54B7E081FD146E000ADDEA1 /* AppDelegate.swift */,
-				F54B7E0A1FD146E000ADDEA1 /* ViewController.swift */,
+				F54B7E2A1FD1520D00ADDEA1 /* Model */,
+				F54B7E421FD1A66500ADDEA1 /* ViewController */,
+				F54B7E281FD151E300ADDEA1 /* Library */,
 				F54B7E0C1FD146E000ADDEA1 /* Main.storyboard */,
 				F54B7E0F1FD146E000ADDEA1 /* Assets.xcassets */,
 				F54B7E111FD146E000ADDEA1 /* LaunchScreen.storyboard */,
 				F54B7E141FD146E000ADDEA1 /* Info.plist */,
 			);
 			path = FetchData;
+			sourceTree = "<group>";
+		};
+		F54B7E271FD151D800ADDEA1 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F54B7E1F1FD1486500ADDEA1 /* Reachability.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F54B7E281FD151E300ADDEA1 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				F54B7E271FD151D800ADDEA1 /* Helper */,
+				F54B7E291FD151F200ADDEA1 /* FetchData */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		F54B7E291FD151F200ADDEA1 /* FetchData */ = {
+			isa = PBXGroup;
+			children = (
+				F54B7E1C1FD1471300ADDEA1 /* ManageRequestData.swift */,
+			);
+			path = FetchData;
+			sourceTree = "<group>";
+		};
+		F54B7E2A1FD1520D00ADDEA1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F54B7E3F1FD1715300ADDEA1 /* Model_API.swift */,
+				F54B7E2B1FD1521500ADDEA1 /* Entity */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F54B7E2B1FD1521500ADDEA1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				F54B7E211FD1488E00ADDEA1 /* VideoEntity.swift */,
+				F54B7E251FD1519900ADDEA1 /* UserEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		F54B7E421FD1A66500ADDEA1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F54B7E0A1FD146E000ADDEA1 /* ViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +199,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F54B7E1D1FD1471300ADDEA1 /* ManageRequestData.swift in Sources */,
 				F54B7E0B1FD146E000ADDEA1 /* ViewController.swift in Sources */,
+				F54B7E201FD1486500ADDEA1 /* Reachability.swift in Sources */,
+				F54B7E401FD1715300ADDEA1 /* Model_API.swift in Sources */,
+				F54B7E261FD1519900ADDEA1 /* UserEntity.swift in Sources */,
+				F54B7E221FD1488E00ADDEA1 /* VideoEntity.swift in Sources */,
 				F54B7E091FD146E000ADDEA1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
