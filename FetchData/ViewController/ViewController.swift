@@ -21,7 +21,7 @@ class ViewController: UIViewController {
             
             guard status == true else { return }
             
-            for data in Model_API.sharedInstance.Video_List
+            for data in self.Model.Video_List
             {
                 print(data.Video_Name)
                 print(data.Video_Status)
