@@ -35,12 +35,12 @@ class Model_API: NSObject {
         }
     }
     
-    private var Cahce_Image = [String : UIImage]()
+    private var Cahce_Image:NSCache = NSCache<NSString , UIImage>()
     
     func Fetch_Image(Image_URL : String , completion:@escaping (UIImage)->())
     {
         
-        if let image = Cahce_Image[Image_URL]
+        if let image = Cahce_Image.object(forKey: NSString(string: Image_URL))
         {
             return completion(image)
         }
@@ -51,7 +51,7 @@ class Model_API: NSObject {
                 
                 guard let data = data , let image = UIImage(data: data) else { return }
                 
-                self.Cahce_Image[Image_URL] = image
+                self.Cahce_Image.setObject(image, forKey: NSString(string: Image_URL))
                 
                 OperationQueue.main.addOperation { return completion(image) }
                 
