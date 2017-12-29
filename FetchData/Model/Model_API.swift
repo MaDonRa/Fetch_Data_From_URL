@@ -18,17 +18,33 @@ class Model_API: NSObject {
     
     func Fetch_Video_List(completion:@escaping (Bool)->())
     {
-        self.Fetch.FetchData(url: "https://api.vibie.live/v1/lives" , UseCacheIfHave: false) { (data) in
+        self.Fetch.FetchData(url: "https://www.estopolis.com/allreview" , UseCacheIfHave: false) { (data) in
             
-            guard let data = data , let json = try? JSONSerialization.jsonObject(with: data, options:.allowFragments) as? NSDictionary , let Event = json?["items"] as? [[String: AnyObject]] else { return completion(false) }
-            // ขึ้นอยู่กับรูปแบบ array ที่มาจาก API - array 1 D / array 2 D
+            guard let data = data , let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String:AnyObject]] else { return completion(false) }
             
-            for a in Event
+            
+           
+            for a in json!
             {
+                print(a)
                 
-                self.Video_List.append(VideoEntity.init(Video_json: a))
-                
+                if let text = a["MetaSEO"] as? [String:Any]
+                {
+                    print(5555)
+                    //print(text)
+                    print(text["Description"] as? String)
+                    
+                    
+                }
             }
+            // ขึ้นอยู่กับรูปแบบ array ที่มาจาก API - array 1 D / array 2 D
+           
+//            for a in Event
+//            {
+//
+//                self.Video_List.append(VideoEntity.init(Video_json: a))
+//
+//            }
             
             return completion(true)
             
