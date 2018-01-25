@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5DC024642019C8DF008F630C /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC024632019C8DF008F630C /* ResponseEntity.swift */; };
 		F54B7E091FD146E000ADDEA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B7E081FD146E000ADDEA1 /* AppDelegate.swift */; };
 		F54B7E0B1FD146E000ADDEA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B7E0A1FD146E000ADDEA1 /* ViewController.swift */; };
 		F54B7E0E1FD146E000ADDEA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F54B7E0C1FD146E000ADDEA1 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5DC024632019C8DF008F630C /* ResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntity.swift; sourceTree = "<group>"; };
 		F54B7E051FD146E000ADDEA1 /* FetchData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F54B7E081FD146E000ADDEA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F54B7E0A1FD146E000ADDEA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DC024652019C8E1008F630C /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				5DC024632019C8DF008F630C /* ResponseEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		F54B7DFC1FD146E000ADDEA1 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				F54B7E1C1FD1471300ADDEA1 /* ManageRequestData.swift */,
+				5DC024652019C8E1008F630C /* Entity */,
 			);
 			path = FetchData;
 			sourceTree = "<group>";
@@ -202,6 +213,7 @@
 				F54B7E1D1FD1471300ADDEA1 /* ManageRequestData.swift in Sources */,
 				F54B7E0B1FD146E000ADDEA1 /* ViewController.swift in Sources */,
 				F54B7E201FD1486500ADDEA1 /* Reachability.swift in Sources */,
+				5DC024642019C8DF008F630C /* ResponseEntity.swift in Sources */,
 				F54B7E401FD1715300ADDEA1 /* Model_API.swift in Sources */,
 				F54B7E261FD1519900ADDEA1 /* UserEntity.swift in Sources */,
 				F54B7E221FD1488E00ADDEA1 /* VideoEntity.swift in Sources */,

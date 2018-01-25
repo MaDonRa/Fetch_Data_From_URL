@@ -12,78 +12,62 @@ class Model_API: NSObject {
     
     static var sharedInstance = Model_API()
     
-    private let Fetch : FetchDataDelegate = FetchModel()
+    private let Fetch : FetchFullAccessDelegate = FetchModel()
     
     public var Video_List = [VideoEntity]()
     
-    func Fetch_Video_List(completion:@escaping (Bool)->())
-    {
-        self.Fetch.FetchData(url: "https://api.vibie.live/v1/lives" , UseCacheIfHave: false) { (data) in
+    func Fetch_Video_List(completion:@escaping (Int,String)->()) {
+        self.Fetch.GetData(url: "https://api.vibie.live/v1/lives", UseCacheIfHave: false) { (response) in
             
-            guard let data = data , let json = try? JSONSerialization.jsonObject(with: data, options:.allowFragments) as? NSDictionary , let Event = json?["items"] as? [[String: AnyObject]] else { return completion(false) }
-            // ขึ้นอยู่กับรูปแบบ array ที่มาจาก API - array 1 D / array 2 D
-            
-            for a in Event
-            {
-                
-                self.Video_List.append(VideoEntity.init(Video_json: a))
-                
+            for a in response.DataArray {
+                self.Video_List.append(VideoEntity(Video_json: a))
             }
             
-            return completion(true)
-            
+            return completion(response.Status,response.Error)
         }
     }
     
-//    func Fetch_Video_List(completion:@escaping (Bool)->())
-//    {
-//        self.Fetch.FetchData(url: "https://www.estopolis.com/allreview" , UseCacheIfHave: false) { (data) in
-//
-//            guard let data = data , let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String:AnyObject]] else { return completion(false) }
-//
-//
-//
-//            for a in json!
-//            {
-//                print(a)
-//
-//                if let text = a["MetaSEO"] as? [String:Any]
-//                {
-//
-//                    print(text["Description"] as? String)
-//
-//                }
-//            }
-//
-//            return completion(true)
-//
-//        }
-//    }
+    func Update_User_Profile(Name: String , Last_Name: String , E_mail: String , Gender: String , BirthDate : String, Image_Url : String, completion:@escaping (Int,String)->()) {
+        self.Fetch.PostData(url: "www.eiei.com", PostArray: [
+            "Name" : Name,
+            "LastName" : Last_Name,
+            "Email" : E_mail,
+            "Gender" : Gender,
+            "BirthDate" : BirthDate,
+            "ImageUrl" : Image_Url]
+        ) { (response) in
+            
+            return completion(response.Status,response.Error)
+        }
+    }
+    
+    func Update_User_Image_Profile(image : UIImage? , completion:@escaping (Int,String)->()) {
+        guard let image = image , let ImageJPEG = UIImageJPEGRepresentation(image, 0.5) else { return }
+        self.Fetch.PostDataWithImage(url: "www.eiei.com/image", Post: ImageJPEG) { (response) in
+            
+            
+            return completion(response.Status,response.Error)
+        }
+    }
     
     lazy private var Cahce_Image:NSCache = NSCache<NSString , UIImage>()
     
-    func Fetch_Image(Image_URL : String , completion:@escaping (UIImage)->())
-    {
+    func Fetch_Image(Image_URL : String , completion:@escaping (UIImage)->()) {
         
-        if let image = Cahce_Image.object(forKey: NSString(string: Image_URL))
-        {
+        if let image = Cahce_Image.object(forKey: NSString(string: Image_URL)) {
             return completion(image)
         }
-        else
-        {
-            
-            self.Fetch.FetchData(url: Image_URL , UseCacheIfHave: true) { (data) in
+        else {
+            self.Fetch.GetImageData(url: Image_URL, UseCacheIfHave: true, completion: { (data) in
                 
-                guard let data = data , let image = UIImage(data: data) else { return }
+                guard let image = UIImage(data: data) else { return }
                 
                 self.Cahce_Image.setObject(image, forKey: NSString(string: Image_URL))
                 
                 OperationQueue.main.addOperation { return completion(image) }
                 
-            }
-            
+            })
         }
-        
     }
-    
 }
+

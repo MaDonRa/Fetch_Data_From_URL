@@ -17,12 +17,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.Model.Fetch_Video_List { (status) in
+        self.Model.Fetch_Video_List { (status,error) in
             
-            guard status == true else { return }
-            
-            for data in self.Model.Video_List
-            {
+            for data in self.Model.Video_List {
                 print(data.Video_Name)
                 print(data.Video_Status)
                 print(data.Video_Viewer)
