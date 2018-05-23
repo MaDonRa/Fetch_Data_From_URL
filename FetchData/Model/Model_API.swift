@@ -13,12 +13,12 @@ class Model_API: NSObject {
     static var sharedInstance = Model_API()
     
     private let Fetch : FetchFullAccessDelegate = FetchModel()
+    private let TestRestful : FetchRestfulDelegate = FetchModel()
     
     public var Video_List = [VideoEntity]()
     
     func Fetch_Video_List(completion:@escaping (Int,String)->()) {
-        self.Fetch.GetData(url: "https://api.vibie.live/v1/lives", UseCacheIfHave: false) { (response) in
-            
+        TestRestful.RestfulPostData(url: "https://api.vibie.live/v1/lives" , Method: HTTPMethod.GET , UseCacheIfHave: false , PostArray: [:]) { (response) in
             for a in response.DataArray {
                 self.Video_List.append(VideoEntity(Video_json: a))
             }

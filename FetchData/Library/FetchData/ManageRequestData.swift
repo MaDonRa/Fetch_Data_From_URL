@@ -28,8 +28,15 @@ protocol FetchPostImageDelegate {
     func PostDataWithImage(url : String , Post : Data , completion:@escaping (ResponseEntity)->())
 }
 
+internal enum HTTPMethod : String {
+    case GET , POST , DELETE , PATCH , PUT
+}
 
-class FetchModel : FetchGetDelegate , FetchGetImageDelegate , FetchPostDelegate , FetchPostImageDelegate {
+protocol FetchRestfulDelegate {
+    func RestfulPostData(url : String , Method : HTTPMethod , UseCacheIfHave: Bool , PostArray : [String : Any] , completion:@escaping (ResponseEntity)->())
+}
+
+class FetchModel : FetchGetDelegate , FetchGetImageDelegate , FetchPostDelegate , FetchPostImageDelegate , FetchRestfulDelegate {
     
     private var CheckFetched = [String:Int]()
     
@@ -172,6 +179,53 @@ class FetchModel : FetchGetDelegate , FetchGetImageDelegate , FetchPostDelegate 
                 }
                 self?.CheckFetched[url] = check + 1
                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) { self?.PostDataWithImage(url : url , Post : Post  ,completion: completion) }
+                
+                return
+            }
+            
+            DispatchQueue.main.async {
+                return completion(ResponseEntity(json: ConvertJson))
+            }
+            
+        }
+        
+        task.resume()
+        
+    }
+    
+    func RestfulPostData(url : String , Method : HTTPMethod , UseCacheIfHave: Bool , PostArray : [String : Any] , completion:@escaping (ResponseEntity)->()) {
+        
+        guard Reachability.isConnectedToNetwork() == true , let link_url = URL(string: url) else { return }
+        
+        let request = NSMutableURLRequest(url: link_url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 15)
+        request.httpMethod = Method.rawValue
+        
+        if !PostArray.isEmpty {
+            do {
+                let Body = try JSONSerialization.data(withJSONObject: PostArray, options: .prettyPrinted)
+                request.httpBody = Body
+            } catch {
+                print(error)
+                return
+            }
+        }
+
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { [weak self]
+            (data, response, error) -> Void in
+            
+            guard error == nil , (response as? HTTPURLResponse)?.statusCode == 200 , let data = data , let json = try? JSONSerialization.jsonObject(with: data, options:.allowFragments) as? [String : AnyObject] , let ConvertJson = json else {
+                
+                print("Check Internet Connection not return [200] : \(url) : \(error.debugDescription)")
+                guard let check = self?.CheckFetched[url] , check < 3 else {
+                    if self?.CheckFetched[url] == nil {
+                        self?.CheckFetched[url] = 0
+                    }
+                    return
+                }
+                self?.CheckFetched[url] = check + 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10) { self?.PostData(url : url , PostArray : PostArray  ,completion: completion) }
                 
                 return
             }
