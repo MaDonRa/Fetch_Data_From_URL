@@ -11,6 +11,7 @@ import Foundation
 typealias FetchFullGetDelegate = FetchGetDelegate & FetchGetImageDelegate
 typealias FetchGetAndPostDelegate = FetchGetDelegate & FetchPostDelegate & FetchGetImageDelegate
 typealias FetchFullAccessDelegate = FetchGetDelegate & FetchPostDelegate & FetchPostImageDelegate & FetchGetImageDelegate
+typealias FetchRestfulAndImageDelegate = FetchRestfulDelegate & FetchGetImageDelegate
 
 protocol FetchGetDelegate {
     func GetData(url : String , UseCacheIfHave: Bool , completion:@escaping (ResponseEntity)->())
