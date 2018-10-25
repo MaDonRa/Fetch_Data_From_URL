@@ -12,29 +12,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var CenterImageView: UIImageView!
     
-    private let Model = Model_API.sharedInstance
+    private weak var Model = Model_API.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.Model.Fetch_Video_List { (status,error) in
-            
-            for data in self.Model.Video_List {
-                print(data.Video_Name)
-                print(data.Video_Status)
-                print(data.Video_Viewer)
-                
-                print(data.User_Name)
-                
-                self.Model.Fetch_Image(Image_URL: data.User_Image, completion: { (image) in
-                    self.CenterImageView.image = image
-                })
-                
-            }
-            
-        }
-        
+        self.Model?.Fetch_Image(Image_URL: "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png", completion: { [weak self]  (image) in
+            guard let self = self else { return }
+            self.CenterImageView.image = image
+        })
     }
-    
 }
 

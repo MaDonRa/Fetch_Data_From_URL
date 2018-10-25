@@ -6,26 +6,27 @@
 //  Copyright © 2018 Sakkaphong. All rights reserved.
 //
 
-import Foundation
-
-class ResponseEntity : NSObject {
+struct ResponseEntity {
     
     let Success : Bool
     let Error : String
-    let Data : [String : AnyObject]
+    let Data : [String : Any]
     let DataString : String
-    let DataArray : [[String : AnyObject]]
+    let DataInt : Int
+    let DataArray : [[String : Any]]
+    let DataBool : Bool
     let Total : Int
     let Status : Int
     
-    init(json : [String : AnyObject]) {
+    init(json : [String : Any]) {
         self.Success = json["success"] as? Bool ?? false
-        self.Error = json["Errorss"] as? String ?? "Error : nil by MaDonRa"
-        self.Data = json["Data"] as? [String : AnyObject] ?? [:]
-        self.DataString = json["Data"] as? String ?? ""
-        self.DataArray = json["items"] as? [[String : AnyObject]] ?? [[:]]
-        self.Total = json["Total"] as? Int ?? 0
-        self.Status = json["Status"] as? Int ?? 0
+        self.Error = json["errors"] as? String ?? "error"
+        self.Data = json["data"] as? [String : Any] ?? [:]
+        self.DataString = json["data"] as? String ?? ""
+        self.DataInt = json["data"] as? Int ?? 0
+        self.DataArray = json["data"] as? [[String : Any]] ?? []
+        self.DataBool = json["data"] as? Bool ?? false
+        self.Total = json["total"] as? Int ?? 0
+        self.Status = json["status"] as? Int ?? 0
     }
-    
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5DC024642019C8DF008F630C /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC024632019C8DF008F630C /* ResponseEntity.swift */; };
+		F51664C52181AAFA007ACC41 /* ServerStatusEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51664C42181AAFA007ACC41 /* ServerStatusEntity.swift */; };
+		F51664C72181AB71007ACC41 /* Rounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51664C62181AB70007ACC41 /* Rounter.swift */; };
 		F54B7E091FD146E000ADDEA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B7E081FD146E000ADDEA1 /* AppDelegate.swift */; };
 		F54B7E0B1FD146E000ADDEA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B7E0A1FD146E000ADDEA1 /* ViewController.swift */; };
 		F54B7E0E1FD146E000ADDEA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F54B7E0C1FD146E000ADDEA1 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		5DC024632019C8DF008F630C /* ResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntity.swift; sourceTree = "<group>"; };
+		F51664C42181AAFA007ACC41 /* ServerStatusEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerStatusEntity.swift; sourceTree = "<group>"; };
+		F51664C62181AB70007ACC41 /* Rounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rounter.swift; sourceTree = "<group>"; };
 		F54B7E051FD146E000ADDEA1 /* FetchData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F54B7E081FD146E000ADDEA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F54B7E0A1FD146E000ADDEA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,9 +54,18 @@
 		5DC024652019C8E1008F630C /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				F51664C42181AAFA007ACC41 /* ServerStatusEntity.swift */,
 				5DC024632019C8DF008F630C /* ResponseEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		F51664C82181AB8F007ACC41 /* Rounter */ = {
+			isa = PBXGroup;
+			children = (
+				F51664C62181AB70007ACC41 /* Rounter.swift */,
+			);
+			path = Rounter;
 			sourceTree = "<group>";
 		};
 		F54B7DFC1FD146E000ADDEA1 = {
@@ -77,6 +90,7 @@
 				F54B7E081FD146E000ADDEA1 /* AppDelegate.swift */,
 				F54B7E2A1FD1520D00ADDEA1 /* Model */,
 				F54B7E421FD1A66500ADDEA1 /* ViewController */,
+				F51664C82181AB8F007ACC41 /* Rounter */,
 				F54B7E281FD151E300ADDEA1 /* Library */,
 				F54B7E0C1FD146E000ADDEA1 /* Main.storyboard */,
 				F54B7E0F1FD146E000ADDEA1 /* Assets.xcassets */,
@@ -170,6 +184,7 @@
 				TargetAttributes = {
 					F54B7E041FD146E000ADDEA1 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -212,10 +227,12 @@
 			files = (
 				F54B7E1D1FD1471300ADDEA1 /* ManageRequestData.swift in Sources */,
 				F54B7E0B1FD146E000ADDEA1 /* ViewController.swift in Sources */,
+				F51664C52181AAFA007ACC41 /* ServerStatusEntity.swift in Sources */,
 				F54B7E201FD1486500ADDEA1 /* Reachability.swift in Sources */,
 				5DC024642019C8DF008F630C /* ResponseEntity.swift in Sources */,
 				F54B7E401FD1715300ADDEA1 /* Model_API.swift in Sources */,
 				F54B7E261FD1519900ADDEA1 /* UserEntity.swift in Sources */,
+				F51664C72181AB71007ACC41 /* Rounter.swift in Sources */,
 				F54B7E221FD1488E00ADDEA1 /* VideoEntity.swift in Sources */,
 				F54B7E091FD146E000ADDEA1 /* AppDelegate.swift in Sources */,
 			);
@@ -364,7 +381,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MaDonRa.FetchData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -379,7 +396,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MaDonRa.FetchData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
