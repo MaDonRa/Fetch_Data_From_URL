@@ -34,7 +34,8 @@ class FetchModel : NSObject , FetchGetImageDelegate , FetchRestfulDelegate {
         
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
             
-            let task = URLSession.shared.dataTask(with: URLRequest(url: link_url, cachePolicy: UseCacheIfHave ? .returnCacheDataElseLoad : .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)) { [unowned self]
+            let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+            let task = urlSession.dataTask(with: URLRequest(url: link_url, cachePolicy: UseCacheIfHave ? .returnCacheDataElseLoad : .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)) { [unowned self]
                 (data, response, error) -> Void in
                 
                 guard error == nil , (response as? HTTPURLResponse)?.statusCode == 200 , let data = data else {
